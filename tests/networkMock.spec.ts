@@ -1,8 +1,10 @@
-import {test,expect} from '@playwright/test';
-import { BookStorePage } from '../pages/BookStorePage';
+import {test,expect} from '../fixtures/customFixtures';
 import { mockBooksResponse,mockBooksEmptyResponse,mockBooksDelayedResponse } from '../test-data/mockBook';
-test('TC_005 Mock Books API', async({page})=>{
-   
+
+
+test('TC_005 Mock Books API', async({page,bookStorePage,logger})=>{
+     
+    logger.info('Mocking books with Custom Data');
     //Intercepts the original route before it reaches the server
     await page.route('**/BookStore/v1/Books', 
         async route => {
@@ -18,7 +20,6 @@ test('TC_005 Mock Books API', async({page})=>{
         }
     );
 
-    const bookStorePage= new BookStorePage(page);
     await bookStorePage.goto();
     //checks whether the mock book is displayed
     await expect(page.getByText('Learn Playwright Automation')).toBeVisible();
@@ -27,8 +28,9 @@ test('TC_005 Mock Books API', async({page})=>{
 });
 
 
-test('TC_006 Mock Empty Book Response', async({page})=>{
-
+test('TC_006 Mock Empty Book Response', async({page,bookStorePage,logger})=>{
+  
+   logger.info('Mocking books with Empty Data');
    await page.route('**/BookStore/v1/books',
     
     async route => {
@@ -45,16 +47,15 @@ test('TC_006 Mock Empty Book Response', async({page})=>{
    );
 
 
-   const bookStorePage= new BookStorePage(page);
    await bookStorePage.goto();
-   const rows= page.locator('.rt-tbody .rt-tr-group');
-   await expect(rows).toHaveCount(0);
+ 
+   await expect(bookStorePage.bookRows).toHaveCount(0);
 
 });
 
-test('TC_007 Delay API Response', async({page})=>{
+test('TC_007 Delay API Response', async({page,bookStorePage,logger})=>{
 
-
+    logger.info('Mocking books with Delayed Response');
     await page.route('**/BookStore/v1/Books',
 
         async route=> {
@@ -76,7 +77,18 @@ test('TC_007 Delay API Response', async({page})=>{
         }
     );
 
-    const bookStorePage= new BookStorePage(page);    
+       
    await bookStorePage.goto();
     await expect(page.getByText('Delayed Book')).toBeVisible();
 });
+
+
+// test('Test Timeout Example', async({page,bookStorePage})=>{
+
+//     await bookStorePage.goto();
+//     await new Promise(resolve=>{
+
+//        setTimeout(resolve,35000);
+
+//     });
+// });

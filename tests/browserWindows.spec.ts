@@ -1,12 +1,17 @@
-import {test, expect} from '@playwright/test';
-import { BrowserWindowPage } from '../pages/BrowserWindowPage';
+import {test, expect} from '../fixtures/customFixtures';
+
+
+test.beforeEach(async({browserWindowPage, logger})=>{
+
+  logger.info('Opening Browser Window Page');
+  await browserWindowPage.goto();
+});
 
 
 test('TC_001 Verify new tab opens',async({page})=>{
      
     //creates an object of the Browser Window Page
-    const browserWindowPage= new BrowserWindowPage(page);
-    await browserWindowPage.goto();
+  
 
     //Captures the array returned by Prmosie.all() that stores new tab 
     //Promise.all() exceutes both tasks simultaneously 
@@ -16,7 +21,7 @@ test('TC_001 Verify new tab opens',async({page})=>{
         page.context().waitForEvent('page'),
 
         //clicks the button that opens the tab
-        browserWindowPage.newTabButton.click()
+        page.locator('#tabButton').click()
 
      ]);
 
@@ -29,13 +34,12 @@ test('TC_001 Verify new tab opens',async({page})=>{
 
 test('TC_002 Verify New Tab Content', async({page})=>{
 
-    const browserWindowPage= new BrowserWindowPage(page);
-    await browserWindowPage.goto();
+    
 
     const [childPage]= await Promise.all([
 
         page.context().waitForEvent('page'),
-        browserWindowPage.newTabButton.click()
+        page.locator('#tabButton').click()
 
     ]);
     
@@ -51,13 +55,10 @@ test('TC_002 Verify New Tab Content', async({page})=>{
 test('TC_003 Close Child Tab', async({page})=>{
 
 
-    const browserWindowPage= new BrowserWindowPage(page);
-    await browserWindowPage.goto();
-
     const [childPage]= await Promise.all([
        
         page.context().waitForEvent('page'),
-        browserWindowPage.newTabButton.click()
+        page.locator('#tabButton').click()
     ]);
     
     //waits for the childPage to load completely
@@ -74,13 +75,10 @@ test('TC_003 Close Child Tab', async({page})=>{
 
 test('TC_004 Verify New Window Message', async({page})=>{
 
-    const browserWindowPage= new BrowserWindowPage(page);
-    await browserWindowPage.goto();
-
     const [messageWindow]= await Promise.all([
 
         page.context().waitForEvent('page'),
-        browserWindowPage.newWindowMessageButton.click()
+        page.locator('#messageWindowButton').click()
     ]);
 
     await messageWindow.waitForLoadState();

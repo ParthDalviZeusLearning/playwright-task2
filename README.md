@@ -14,6 +14,16 @@ The project contains advanced Playwright automation scenaros implemented using T
 
 playwright-advanced-training/
 |
+|--- DebuggingDocs/
+|    |--debugging-report.md
+|
+|--- fixtures/
+|    |--customFixtures.ts
+|
+|--- HTMLReportScreenshots
+|    |--Day1
+|    |--Day2
+|
 |--- pages/
 |    |--BrowserWindowPage.ts
 |    |--BookStorePage.ts
@@ -23,7 +33,13 @@ playwright-advanced-training/
 |    |--networkMock.spec.ts
 |
 |--- test-data/
-|    |-mockBook.ts
+|    |--mockBook.ts
+|
+|--- TraceViewerDocs/
+|    |--trace-viewer.md
+|
+|---utils/
+|   |--Logger.ts
 |
 |--- playwright.config.ts
 |--- package.json
@@ -62,7 +78,7 @@ playwright-advanced-training/
   
   npx playwright test --headed
 
-# Current Test Coverage
+# Test Coverage
 
 - Browser Windows
 
@@ -77,6 +93,16 @@ playwright-advanced-training/
   - TC_006 Mock Empty API response
   - TC_007 Mock Delayed API response
 
+# Fixtures
+
+- Implemented Page Object fixtures for BrowserWindowPage and BookStorePage
+- Implemented Logger utility fixture
+
+# Reports and Debugging
+
+- Generated Playwright HTML reports
+- Used Trace Viewer for execution analysis
+- Documented 5 failure categories and 3 timeout categories
 
 
 
