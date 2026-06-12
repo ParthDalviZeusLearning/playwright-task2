@@ -163,23 +163,23 @@
 
 # Timeout Types
 
-# Type 1 : Action Timeout
+## Type 1 : Action Timeout
 
-  # Description
+  ### Description
   A user action(click,fill,etc) takes too long
 
-  # Steps Used to Simulate
+  ### Steps Used to Simulate
   1. Replaced '#messageWindowButton' with an invalid locator '#invalidButton'
   2. Attempt click action
   3. Set action timeout to 2 seconds
   4. Playwright searches for the element,but element is not found.
   5. Action Timeout occurs
 
-  # Root Cause
+  ### Root Cause
 
   Target element was not found before action timeout occured
 
-  # Failure Log
+  ### Failure Log
 
     TimeoutError: locator.click: Timeout 2000ms exceeded.
     Call log:
@@ -197,23 +197,23 @@
  
  ![ActionTimeout](ActionTimeout.png)
 
-# Type 2: Expect Timeout
+## Type 2: Expect Timeout
 
-  # Description 
+  ### Description 
   Assertion condition is not satisfied within the specified framework
 
-  # Steps Used to Simulate
+  ### Steps Used to Simulate
   1. Kept mocked API response as 'Delayed Book' in TC_007
   2. Modified assertion to search for text 'Delayed Playwright Testing' (text does not exists)
   3. Apply assertion timeout of 3 seconds
   4. Playwright repeatedly checks for the element, but the element never appears
   5. Assertion timeout occurs
 
-  # Root Cause
+  ### Root Cause
 
   Expected condition was not satified within the timeout period 
 
-  # Failure Log
+  ### Failure Log
 
     Error: expect(locator).toBeVisible() failed
 
@@ -235,22 +235,22 @@
 
     ![ExpectTimeout](ExpectTimeout.png)
 
-# Type 3 : Test Timeout
+## Type 3 : Test Timeout
 
-  # Description
+  ### Description
   Entire test exceeds the maximum execution time
 
-  # Steps Used to Simulate
+  ### Steps Used to Simulate
   1. Introduced a delay of 35 seconds using setTimeout()
   2. Executed the test 
   3. Playwright waits for the delay to finish, but Default test timeout of 30 seconds is exceeded
   4. Test Execution is terminated
 
-  # Root Cause
+  ### Root Cause
 
   Total test execution time exceeded the Playwright test timeout
 
-  # Failure Log
+  ### Failure Log
 
    Test timeout of 30000ms exceeded.
 
