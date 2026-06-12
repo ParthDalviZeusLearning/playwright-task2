@@ -1,18 +1,18 @@
 # Debugging Report
 
-### Failure Categories 
+# Failure Categories 
 
-# Failure Category 1 : Locator Failure
+## Failure Category 1 : Locator Failure
 
- # Steps used to simulate 
+ ### Steps used to simulate 
  - Used an invalid locator which does not exist 
      #wronglocator
  
- # Root Cause 
+ ### Root Cause 
  - Locator is incorrect.
  - Element not found in DOM.
 
- # Failure Log
+ ### Failure Log
   
     Error: locator.click: Test timeout of 30000ms exceeded.
     Call log:
@@ -29,17 +29,17 @@
   ![LocatorFailure](FailureCategory1.png)
 
 
-# Failure Category 2: Assertion Failure
+## Failure Category 2: Assertion Failure
 
- # Steps used to Simulate
+ ### Steps used to Simulate
  1. Replaced Expected text 'This is a sample page' in TC_002 with 'ABC page'
  2. Executed Browser Window Tests
  3. Observed Assertion Failure
 
- # Root Cause
+ ### Root Cause
  Incorrect expected value.Test Data mismatch.
 
- # Failure Log
+ ### Failure Log
 
     Error: expect(locator).toHaveText(expected) failed
 
@@ -65,19 +65,19 @@
 
    ![AssertionFailure](FailureCategory2.png)
     
-# Failure Category 3: Synchronization / Timing Failure
+## Failure Category 3: Synchronization / Timing Failure
 
- # Steps used to simulate
+ ### Steps used to simulate
  1. Increased mock API response delay to 10 seconds
  2. Reduced assertion timeout to 2 seconds
  3. Executed TC_007
  4. Observed Synchronization Failure
 
- # Root Cause
+ ### Root Cause
 
  Application response was delayed but, assertion timeout was shorter than response time.
 
- # Failure Log
+ ### Failure Log
 
     Error: expect(locator).toBeVisible() failed
 
@@ -100,18 +100,18 @@
     
 ![TimingFailure](FailureCategory3.png)
 
-# Failure Category 4 : URL Assertion Failure
+## Failure Category 4 : URL Assertion Failure
 
-  # Steps Used to Simulate
+  ### Steps Used to Simulate
   1. Modified assertion from '/browser-windows/' to '/wrong-page/'
   2. Executed the Browser Window Tests
   3. Observed Assertion Failure
 
-  # Root Cause
+  ### Root Cause
     
   Expected URL pattern did not match the actual page URL
 
-  # Failure Log
+  ### Failure Log
 
     Error: expect(page).toHaveURL(expected) failed
 
@@ -134,17 +134,17 @@
 
   ![URLAssertionFailure](FailureCategory4.png)
 
-# Failure Category 5: Fixture Misconfiguration Failure
+## Failure Category 5: Fixture Misconfiguration Failure
 
-  # Steps Used to Simulate
+  ### Steps Used to Simulate
   1. Renamed the fixture parameter from 'logger' to 'loggerWrong'
   2. Executed the test suite
   3. Observed Fixture Resolution Failure
 
-  # Root Cause 
+  ### Root Cause 
   Test attempted to use a fixture that was not defined in customFixtures.ts 
 
-  # Failure Log
+  ### Failure Log
 
     Test has unknown parameter "loggerWrong".
 
@@ -161,7 +161,7 @@
   ![FixtureMisconfigurationFailure](FailureCategory5.png)
 
 
-### Timeout Types
+# Timeout Types
 
 # Type 1 : Action Timeout
 
