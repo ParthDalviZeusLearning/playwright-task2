@@ -1,13 +1,13 @@
 import {test, expect} from '../fixtures/customFixtures';
 
-
+//Executed before Each Test 
 test.beforeEach(async({browserWindowPage, logger})=>{
 
   logger.info('Opening Browser Window Page');
   await browserWindowPage.goto();
 });
 
-
+//Verifies clicking on 'New Tab' opens a new tab
 test('TC_001 Verify new tab opens',async({page})=>{
      
     //creates an object of the Browser Window Page
@@ -32,6 +32,7 @@ test('TC_001 Verify new tab opens',async({page})=>{
      expect(newPage).toBeTruthy();
 });
 
+//Verifies new tab content is correctly rendered 
 test('TC_002 Verify New Tab Content', async({page})=>{
 
     
@@ -52,6 +53,7 @@ test('TC_002 Verify New Tab Content', async({page})=>{
 });
 
 
+//Verifies child tab is closed 
 test('TC_003 Close Child Tab', async({page})=>{
 
 
@@ -72,7 +74,7 @@ test('TC_003 Close Child Tab', async({page})=>{
 
 });
 
-
+//Verifies the message is correctly rendered on New Message Window
 test('TC_004 Verify New Window Message', async({page})=>{
 
     const [messageWindow]= await Promise.all([

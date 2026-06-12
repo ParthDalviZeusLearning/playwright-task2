@@ -1,7 +1,7 @@
 import {test,expect} from '../fixtures/customFixtures';
 import { mockBooksResponse,mockBooksEmptyResponse,mockBooksDelayedResponse } from '../test-data/mockBook';
 
-
+//Verify API response with Custom Data
 test('TC_005 Mock Books API', async({page,bookStorePage,logger})=>{
      
     logger.info('Mocking books with Custom Data');
@@ -27,7 +27,7 @@ test('TC_005 Mock Books API', async({page,bookStorePage,logger})=>{
 
 });
 
-
+//Verify API response with Empty Data
 test('TC_006 Mock Empty Book Response', async({page,bookStorePage,logger})=>{
   
    logger.info('Mocking books with Empty Data');
@@ -53,6 +53,7 @@ test('TC_006 Mock Empty Book Response', async({page,bookStorePage,logger})=>{
 
 });
 
+//Verify API response with delay
 test('TC_007 Delay API Response', async({page,bookStorePage,logger})=>{
 
     logger.info('Mocking books with Delayed Response');
